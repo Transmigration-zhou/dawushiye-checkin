@@ -22,7 +22,13 @@
 5. 在 Charles 中找到 `api.dawushiye.com` 的请求
 6. 复制请求头中的 `Authorization` 字段值（以 `eyJ0eXAi...` 开头的 JWT）
 
-### 2. 本地运行
+### 2. 安装依赖
+
+```bash
+pip install -r requirements.txt
+```
+
+### 3. 本地运行
 
 ```bash
 # 方式一：直接传参
@@ -33,9 +39,9 @@ export DAWU_TOKEN="eyJ0eXAi..."
 python sign.py
 ```
 
-### 3. GitHub Actions 自动签到
+### 4. GitHub Actions 自动签到
 
-#### 3.1 推送代码到 GitHub
+#### 4.1 推送代码到 GitHub
 
 ```bash
 git init
@@ -45,7 +51,7 @@ git remote add origin https://github.com/你的用户名/dawushiye-checkin.git
 git push -u origin main
 ```
 
-#### 3.2 配置 Secret
+#### 4.2 配置 Secret
 
 在 GitHub 仓库页面：
 
@@ -56,7 +62,7 @@ git push -u origin main
    - **Secret**: 你抓包获取的 JWT Token（`eyJ0eXAi...` 开头）
 4. 点击 **Add secret**
 
-#### 3.3 运行
+#### 4.3 运行
 
 - **自动运行**：每天北京时间 08:00 自动执行
 - **手动触发**：进入 **Actions** 页面 → 选择 **大物是也自动签到** → **Run workflow**
@@ -90,6 +96,18 @@ git push -u origin main
 [OK] 今日已签到，无需重复签到
 
 ==================================================
+```
+
+## 项目结构
+
+```
+.
+├── sign.py                    # 主签到脚本
+├── requirements.txt           # Python 依赖（requests）
+├── .github/
+│   └── workflows/
+│       └── sign.yml          # GitHub Actions 工作流
+└── README.md                 # 项目说明文档
 ```
 
 ## 注意事项
