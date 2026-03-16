@@ -1,5 +1,10 @@
 # 大物是也微信小程序自动签到
 
+> [!Important]
+> 禁止使用此项目进行任何违法违规活动，本项目仅供学习用途。
+> 
+> It is strictly prohibited to use this project for any illegal or non-compliant activities. This project is solely for learning purposes.
+
 自动签到脚本，支持 GitHub Actions 定时运行，每天自动完成「大物是也」小程序的签到任务。
 
 ## 功能特性
