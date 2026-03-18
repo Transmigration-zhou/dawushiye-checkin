@@ -52,6 +52,7 @@ def build_headers(token: str) -> dict:
 
 def query_sign_data(token: str) -> dict | None:
     """查询当前签到状态。"""
+    resp = None
     try:
         resp = requests.post(
             QUERY_URL,
@@ -61,6 +62,11 @@ def query_sign_data(token: str) -> dict | None:
         )
         resp.raise_for_status()
         return resp.json()
+    except json.JSONDecodeError as e:
+        print(f"Error:  查询签到状态失败: {e}")
+        if resp:
+            print(f"原始响应内容: {resp.text[:500]}")
+        return None
     except requests.RequestException as e:
         print(f"[ERROR] 查询签到状态失败: {e}")
         return None
@@ -68,6 +74,7 @@ def query_sign_data(token: str) -> dict | None:
 
 def do_sign(token: str) -> dict | None:
     """执行签到。"""
+    resp = None
     try:
         resp = requests.post(
             SIGN_URL,
@@ -77,6 +84,11 @@ def do_sign(token: str) -> dict | None:
         )
         resp.raise_for_status()
         return resp.json()
+    except json.JSONDecodeError as e:
+        print(f"[ERROR] 签到响应解析失败: {e}")
+        if resp:
+            print(f"原始响应内容: {resp.text[:500]}")
+        return None
     except requests.RequestException as e:
         print(f"[ERROR] 签到请求失败: {e}")
         return None
